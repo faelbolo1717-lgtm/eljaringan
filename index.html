@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL Jaringan</title>
+
+```
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f5f9;
+        color: #222;
+        min-height: 100vh;
+    }
+
+    header {
+        background: #1f4e79;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    header p {
+        font-size: 15px;
+        opacity: 0.9;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .search {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        outline: none;
+    }
+
+    .search:focus {
+        border-color: #1f4e79;
+    }
+
+    .folder-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .folder {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #222;
+        border: 1px solid #e1e5ea;
+        transition: 0.2s;
+    }
+
+    .folder:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        border-color: #1f4e79;
+    }
+
+    .icon {
+        font-size: 40px;
+    }
+
+    .folder-name {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .folder-info {
+        font-size: 13px;
+        color: #777;
+        margin-top: 5px;
+    }
+
+    footer {
+        text-align: center;
+        color: #777;
+        font-size: 13px;
+        padding: 30px 15px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 25px;
+        }
+
+        .folder-list {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+    <h1>📚 EL Jaringan</h1>
+    <p>Kumpulan materi dan file jaringan komputer</p>
+</header>
+
+<div class="container">
+
+```
+<input
+    type="text"
+    id="search"
+    class="search"
+    placeholder="🔎 Cari folder..."
+    onkeyup="cariFolder()"
+>
+
+<div class="folder-list" id="folderList">
+
+    <a class="folder" href="Materi%20Jarkom/">
+        <div class="icon">📁</div>
+        <div>
+            <div class="folder-name">Materi Jarkom</div>
+            <div class="folder-info">Folder materi jaringan komputer</div>
+        </div>
+    </a>
+
+    <a class="folder" href="Praktek%20Jarkom/">
+        <div class="icon">📁</div>
+        <div>
+            <div class="folder-name">Praktek Jarkom</div>
+            <div class="folder-info">Folder praktik jaringan komputer</div>
+        </div>
+    </a>
+
+    <a class="folder" href="Users/">
+        <div class="icon">📁</div>
+        <div>
+            <div class="folder-name">Users</div>
+            <div class="folder-info">Folder Users</div>
+        </div>
+    </a>
+
+    <a class="folder" href="bahan_pendukung_jarkom/">
+        <div class="icon">📁</div>
+        <div>
+            <div class="folder-name">Bahan Pendukung Jarkom</div>
+            <div class="folder-info">Bahan pendukung jaringan komputer</div>
+        </div>
+    </a>
+
+    <a class="folder" href="materijkomdat/">
+        <div class="icon">📁</div>
+        <div>
+            <div class="folder-name">Materi Jarkomdat</div>
+            <div class="folder-info">Materi jaringan dan komunikasi data</div>
+        </div>
+    </a>
+
+</div>
+```
+
+</div>
+
+<footer>
+    EL Jaringan &copy; 2026
+</footer>
+
+<script>
+    function cariFolder() {
+        const input = document.getElementById("search");
+        const filter = input.value.toLowerCase();
+        const folders = document.querySelectorAll(".folder");
+
+        folders.forEach(function(folder) {
+            const nama = folder
+                .querySelector(".folder-name")
+                .textContent
+                .toLowerCase();
+
+            if (nama.includes(filter)) {
+                folder.classList.remove("hidden");
+            } else {
+                folder.classList.add("hidden");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
